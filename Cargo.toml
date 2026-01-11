@@ -3,6 +3,7 @@ resolver = "2"
 members = [
     "graphql-resolver",
     "graphql-resolver-derive",
+    "graphql-resolver-example",
 ]
 
 [workspace.package]

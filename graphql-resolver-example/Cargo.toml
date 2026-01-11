@@ -1,0 +1,19 @@
+[package]
+name = "graphql-resolver-example"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false
+
+[dependencies]
+graphql-resolver = { path = "../graphql-resolver" }
+async-graphql.workspace = true
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+axum = "0.8"
+async-graphql-axum = "7"
+tower-http = { version = "0.6", features = ["cors"] }
+tracing.workspace = true
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
