@@ -1,0 +1,35 @@
+[package]
+name = "graphql-resolver"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Configuration-driven GraphQL resolver with N+1 detection"
+
+[dependencies]
+async-graphql.workspace = true
+async-graphql-parser.workspace = true
+async-graphql-value.workspace = true
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+inventory.workspace = true
+async-trait.workspace = true
+futures.workspace = true
+rustc-hash.workspace = true
+graphql-resolver-derive = { path = "../graphql-resolver-derive" }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "test-util"] }
+bytes = "1"
+criterion.workspace = true
+
+[[bench]]
+name = "resolver_benchmarks"
+harness = false
+
+[[example]]
+name = "axum_server"
+path = "examples/axum_server.rs"

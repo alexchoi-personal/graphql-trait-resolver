@@ -627,7 +627,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "graphql-trait-resolver"
+name = "graphql-resolver"
 version = "0.1.0"
 dependencies = [
  "async-graphql",
@@ -637,7 +637,7 @@ dependencies = [
  "bytes",
  "criterion",
  "futures",
- "graphql-trait-resolver-derive",
+ "graphql-resolver-derive",
  "inventory",
  "rustc-hash",
  "serde",
@@ -648,7 +648,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "graphql-trait-resolver-derive"
+name = "graphql-resolver-derive"
 version = "0.1.0"
 dependencies = [
  "proc-macro2",

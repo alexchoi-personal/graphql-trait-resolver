@@ -1,4 +1,4 @@
-# graphql-trait-resolver
+# graphql-resolver
 
 A Rust library for building GraphQL servers with trait-based resolvers. Define your schema in SDL, wire up resolvers with simple directives, and get automatic N+1 detection out of the box.
 
@@ -18,14 +18,14 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-graphql-trait-resolver = "0.1"
+graphql-resolver = "0.1"
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 ```
 
 Define your schema and resolvers:
 
 ```rust
-use graphql_trait_resolver::{
+use graphql_resolver::{
     BoxFuture, FxHashMap, GraphQLServer, Resolver, ResolverContext, ResolverResult,
 };
 use async_graphql::Value;
@@ -58,7 +58,7 @@ impl Resolver for GetUserResolver {
 
 const SCHEMA: &str = r#"
     type Query {
-        user(id: ID!): User @trait(name: "getUser")
+        user(id: ID!): User @resolver(name: "getUser")
     }
 
     type User {
@@ -82,14 +82,14 @@ async fn main() {
 
 ## Directives
 
-### `@trait`
+### `@resolver`
 
 Maps a field to a resolver by name:
 
 ```graphql
 type Query {
-    user(id: ID!): User @trait(name: "getUser")
-    users: [User!]! @trait(name: "listUsers")
+    user(id: ID!): User @resolver(name: "getUser")
+    users: [User!]! @resolver(name: "listUsers")
 }
 ```
 
@@ -100,7 +100,7 @@ Enables batching for nested fields to prevent N+1 queries:
 ```graphql
 type User {
     id: ID!
-    posts: [Post!]! @trait(name: "getPostsByUser") @batchKey(field: "id")
+    posts: [Post!]! @resolver(name: "getPostsByUser") @batchKey(field: "id")
 }
 ```
 
@@ -111,7 +111,7 @@ When querying multiple users, the `getPostsByUser` resolver receives all user ID
 Implement `ErasedBatchResolver` for efficient data loading:
 
 ```rust
-use graphql_trait_resolver::{BoxFuture, ErasedBatchResolver, ResolverContext, ResolverResult};
+use graphql_resolver::{BoxFuture, ErasedBatchResolver, ResolverContext, ResolverResult};
 
 struct GetPostsByUserResolver;
 
